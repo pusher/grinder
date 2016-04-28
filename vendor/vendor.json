@@ -1,0 +1,6 @@
+{
+  "rootPath": "github.com/pusher/grinder",
+  "heroku": {
+    "goVersion": "go1.6"
+  }
+}
