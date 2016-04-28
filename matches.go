@@ -15,7 +15,7 @@ type Matches struct {
 func (m *Matches) Index(w web.ResponseWriter, r *web.Request) {
 	var matches []models.Match
 	err := m.DB.Select(&matches, `
-	SELECT users.user_id, users.user_name
+	SELECT users.user_id, users.user_name, users.user_available
 	FROM users, matches
 	WHERE
 		matches.from_user = $1 AND
