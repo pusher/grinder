@@ -46,10 +46,10 @@ var App = &cli.App{
 					EnvVar: "PORT",
 				},
 				cli.StringFlag{
-					Name:   "pgdsn",
+					Name:   "database",
 					Value:  "postgres://localhost/grinder?sslmode=disable",
-					Usage:  "postgresql dsn",
-					EnvVar: "PGDSN",
+					Usage:  "postgresql database dsn",
+					EnvVar: "DATABASE_URL",
 				},
 			},
 		},
@@ -65,11 +65,11 @@ func Server(c *cli.Context) {
 	router := web.New(Grinder{})
 
 	// open database connection
-	db, err := sqlx.Open("postgres", c.String("pgdsn"))
+	db, err := sqlx.Open("postgres", c.String("database"))
 	if err != nil {
 		log.Fatalln("fatal: database:", err)
 	}
-	log.Println("info: database:", c.String("pgdsn"))
+	log.Println("info: database:", c.String("database"))
 
 	// middleware to inject database connection
 	router.Middleware(func(g *Grinder, w web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
