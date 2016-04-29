@@ -99,7 +99,7 @@ Authentication is done by adding an `Authorization` header to every request. The
 
 Reset user availability and match state after round.
 
-    GET /internal/reset HTTP/1.1
+    GET /admin/reset HTTP/1.1
 
     HTTP/1.1 200 OK
 
@@ -108,7 +108,7 @@ Reset user availability and match state after round.
 
 Perform matching between available users
 
-    GET /internal/match HTTP/1.1
+    GET /admin/match HTTP/1.1
 
     HTTP/1.1 200 OK
 

@@ -82,9 +82,14 @@ func Server(c *cli.Context) {
 	router.Get("/claim", (*Grinder).Claims)
 	router.Post("/claim/:user_id", (*Grinder).Claim)
 
-	internal := router.Subrouter(Internal{}, "/internal")
-	internal.Get("/reset", (*Internal).Reset)
-	internal.Get("/match", (*Internal).Match)
+	admin := router.Subrouter(Admin{}, "/admin")
+	admin.Get("/", (*Admin).Index)
+	admin.Get("/users", (*Admin).Users)
+	admin.Get("/matches", (*Admin).Matches)
+	admin.Get("/reset", (*Admin).Reset)
+	admin.Get("/match", (*Admin).Match)
+	admin.Get("/user/:user_id/toggle", (*Admin).Toggle)
+	admin.Get("/matches/:from_user/:to_user/toggle", (*Admin).ToggleMatch)
 
 	// define authenticated routes
 	users := router.Subrouter(Users{}, "/user")
